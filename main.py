@@ -191,3 +191,41 @@ def main():
             print("Invalid response")
 
 main()
+
+
+def main():
+    while True:
+        print("Welcome to DragonBank, please pick your operation")
+        operation = input("(1 - create account)(2 - log in account)(3 - exit): ")
+        if operation == "1":
+            create_account()
+            continue
+        elif operation == "2":
+            key = login_account()           
+            if name_data[key] in manager_data: #Made it so only managers can view entire database all user's data
+                manager_options()
+            else:
+                if key != None:
+                    command = input("Enter your action (1 - deposit)(2 - withdraw)(3 - transfer)(4 - delete account)(5 - main menu): ")
+                    if command == "1":
+                        deposit(key)
+                    elif command == "2":
+                        withdraw(key)
+                    elif command == "3":
+                        transfer(key)
+                    elif command == "4":
+                        delete_account(key)
+                    elif command == "5":
+                        break
+                    else:
+                        print("Invalid response")
+                        continue
+                else:
+                    continue
+        elif operation == "3":
+            print("Thanks for using our service")
+            quit()
+        else:
+            print("Invalid response")
+
+main()
